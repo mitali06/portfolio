@@ -294,6 +294,7 @@
             margin-top: 3rem;
         }
 
+        /* Project Card Flip Animation */
         .project-card {
             background: var(--bg-card);
             border: 1px solid var(--border-light);
@@ -304,6 +305,159 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            min-height: 450px;
+            perspective: 1000px;
+        }
+
+        .project-card.flipped {
+            transform: rotateY(0deg);
+        }
+
+        .project-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .project-card.flipped .project-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .project-card-front, .project-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .project-card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 2rem;
+            padding-top: 4.5rem;
+        }
+
+        .project-card-back::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .project-card-back::-webkit-scrollbar-track {
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .project-card-back::-webkit-scrollbar-thumb {
+            background: rgba(0, 217, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .project-detail-section {
+            margin-bottom: 2rem;
+            flex-shrink: 0;
+        }
+
+        .project-detail-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-detail-title {
+            font-weight: 700;
+            color: var(--accent-cyan);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-detail-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .project-card-front {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 2rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(0, 153, 255, 0.2));
+            color: var(--accent-cyan);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            position: relative;
+            z-index: 5;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .flip-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            color: var(--accent-cyan);
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        .flip-button:hover {
+            background: rgba(0, 217, 255, 0.2);
+            border-color: rgba(0, 217, 255, 0.5);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            color: var(--accent-cyan);
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        .close-button:hover {
+            background: rgba(0, 217, 255, 0.2);
+            border-color: rgba(0, 217, 255, 0.5);
+        }
+
+        .project-card-back {
+            padding-top: 4rem;
         }
 
         .project-card::before {
@@ -671,74 +825,178 @@
             <div class="projects-grid">
                 <!-- RiskIQ -->
                 <div class="project-card scroll-reveal stagger-1">
-                    <span class="project-badge">Production Application</span>
-                    <h3 class="project-title">RiskIQ</h3>
-                    <p class="project-description">
-                        AI-powered financial risk assessment platform that automates loan underwriting using Claude API. Transforms 2-4 hour manual assessments into <strong>&lt;5 second</strong> intelligent analysis with 100% consistency.
-                    </p>
-                    <div class="project-metrics">
-                        <div class="metric">
-                            <div class="metric-value">240x</div>
-                            <div class="metric-label">Faster</div>
+                    <div class="project-card-inner">
+                        <!-- FRONT OF CARD -->
+                        <div class="project-card-front">
+                            <span class="project-badge">Production Application</span>
+                            <h3 class="project-title">RiskIQ</h3>
+                            <p class="project-description">
+                                AI-powered financial risk assessment platform that automates loan underwriting using Claude API. Transforms 2-4 hour manual assessments into <strong>&lt;5 second</strong> intelligent analysis with 100% consistency.
+                            </p>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">240x</div>
+                                    <div class="metric-label">Faster</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">100%</div>
+                                    <div class="metric-label">Consistent</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">7</div>
+                                    <div class="metric-label">Key Metrics</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">10x</div>
+                                    <div class="metric-label">Scalable</div>
+                                </div>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Claude API</span>
+                                <span class="tech-badge">SQL</span>
+                                <span class="tech-badge">Prometheus</span>
+                                <span class="tech-badge">JavaScript</span>
+                                <span class="tech-badge">Vercel</span>
+                            </div>
+                            <button class="flip-button" onclick="flipCard(this)">Read More</button>
                         </div>
-                        <div class="metric">
-                            <div class="metric-value">100%</div>
-                            <div class="metric-label">Consistent</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">7</div>
-                            <div class="metric-label">Key Metrics</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">10x</div>
-                            <div class="metric-label">Scalable</div>
+
+                        <!-- BACK OF CARD -->
+                        <div class="project-card-back">
+                            <button class="close-button" onclick="flipCard(this.closest('.project-card'))">← Back</button>
+                            
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">The Challenge</div>
+                                <div class="project-detail-content">
+                                    Financial institutions face critical operational bottlenecks in loan underwriting: manual risk assessments requiring 2-4 hours per application, subjective decision-making creating inconsistencies across loan officers, difficulty scaling operations, and compliance requirements demanding consistent, auditable evaluation.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">The Solution</div>
+                                <div class="project-detail-content">
+                                    RiskIQ is a production-grade AI platform that automates financial risk assessment using Claude API for intelligent analysis and financial reasoning. Built with Python backend and JavaScript/HTML-CSS frontend, RiskIQ transforms unstructured application data into actionable risk intelligence in under 5 seconds.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Technical Architecture & Implementation</div>
+                                <div class="project-detail-content">
+                                    Backend engineered with Python, leveraging Claude API for natural language understanding and financial analysis of loan applications and supporting documents. SQL-based data pipeline for structured data extraction, cleaning, and aggregation from financial databases. Advanced API monitoring and observability stack: Prometheus for metrics collection, Datadog dashboards for real-time monitoring of inference latency, request throughput, error rates, and cost analytics. JavaScript/HTML-CSS responsive frontend ensuring seamless user experience with real-time risk assessment visualization. Production-ready deployment on Vercel with automatic scaling and CI/CD pipelines for continuous integration.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Key Capabilities</div>
+                                <div class="project-detail-content">
+                                    7 key financial metrics automatically calculated and interpreted by Claude API (debt-to-income, loan-to-income, payment-to-income ratios, financial cushion analysis). Dynamic risk scoring from 0-100% with confidence intervals. Identifies 3-4 specific financial risk factors per application through intelligent analysis. Provides actionable recommendations with mitigation strategies. Complete audit trail for compliance and regulatory review.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Business Impact</div>
+                                <div class="project-detail-content">
+                                    240x performance improvement (2-4 hours to &lt;5 seconds per assessment). 100% consistency across all applications, eliminating subjective bias and improving compliance. 10x operational scaling—process significantly more applications with existing staff. Enhanced risk reduction through consistent, AI-driven evaluation criteria. Current production status with real-world deployment, live monitoring, and continuous performance optimization.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Live Demo</div>
+                                <div class="project-detail-content">
+                                    <a href="https://ai-portfolio-umber-seven.vercel.app/" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">Visit RiskIQ Demo →</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="tech-stack">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Claude API</span>
-                        <span class="tech-badge">SQL</span>
-                        <span class="tech-badge">Prometheus</span>
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">Vercel</span>
-                    </div>
-                    <a href="https://ai-portfolio-umber-seven.vercel.app/" class="project-link" target="_blank">Live Demo</a>
                 </div>
 
                 <!-- Research -->
                 <div class="project-card scroll-reveal stagger-2">
-                    <span class="project-badge">Peer-Reviewed Research</span>
-                    <h3 class="project-title">AI-Powered Finance Research</h3>
-                    <p class="project-description">
-                        Published hybrid deep learning approach for financial market prediction combining LSTM time-series forecasting with fine-tuned NLP sentiment analysis. Achieved <strong>84% prediction accuracy</strong> across multiple market conditions.
-                    </p>
-                    <div class="project-metrics">
-                        <div class="metric">
-                            <div class="metric-value">2021</div>
-                            <div class="metric-label">Published</div>
+                    <div class="project-card-inner">
+                        <!-- FRONT OF CARD -->
+                        <div class="project-card-front">
+                            <span class="project-badge">Peer-Reviewed Research</span>
+                            <h3 class="project-title">AI-Powered Finance Research</h3>
+                            <p class="project-description">
+                                Published hybrid deep learning approach for financial market prediction combining LSTM time-series forecasting with fine-tuned NLP sentiment analysis. Achieved <strong>84% prediction accuracy</strong> across multiple market conditions.
+                            </p>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">2021</div>
+                                    <div class="metric-label">Published</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">84%</div>
+                                    <div class="metric-label">Accuracy</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">IJCRT</div>
+                                    <div class="metric-label">Vol. 9, Issue 6</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">∞</div>
+                                    <div class="metric-label">Impact</div>
+                                </div>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-badge">LSTM</span>
+                                <span class="tech-badge">PyTorch</span>
+                                <span class="tech-badge">TensorFlow</span>
+                                <span class="tech-badge">NLP Fine-tuning</span>
+                                <span class="tech-badge">SQL</span>
+                                <span class="tech-badge">Time-Series</span>
+                            </div>
+                            <button class="flip-button" onclick="flipCard(this)">Read More</button>
                         </div>
-                        <div class="metric">
-                            <div class="metric-value">84%</div>
-                            <div class="metric-label">Accuracy</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">IJCRT</div>
-                            <div class="metric-label">Vol. 9, Issue 6</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">∞</div>
-                            <div class="metric-label">Citations</div>
+
+                        <!-- BACK OF CARD -->
+                        <div class="project-card-back">
+                            <button class="close-button" onclick="flipCard(this.closest('.project-card'))">← Back</button>
+                            
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Research Innovation</div>
+                                <div class="project-detail-content">
+                                    Peer-reviewed research introducing a hybrid deep learning approach for financial market prediction by integrating LSTM neural networks for time-series analysis with LDA-based sentiment analysis and fine-tuned NLP models for real-time financial news processing. Published in IJCRT (2021), this work pioneered the integration of advanced neural networks with natural language understanding for algorithmic finance.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Technical Approach & Implementation</div>
+                                <div class="project-detail-content">
+                                    LSTM networks (Long Short-Term Memory) for temporal pattern recognition and time-series forecasting on historical market data—core architecture for capturing long-term dependencies in financial sequences. PyTorch framework for efficient LSTM model training and optimization with GPU acceleration. TensorFlow for comparative model implementation and production-grade inference pipelines. Advanced NLP fine-tuning: Pre-trained language models fine-tuned on financial news datasets using supervised learning techniques to optimize sentiment extraction accuracy. LDA (Latent Dirichlet Allocation) for topic modeling and sentiment analysis of real-time financial news feeds. Hybrid data fusion combining quantitative technical indicators (price, volume, momentum) with qualitative sentiment signals extracted from fine-tuned NLP models.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Data & Methodology</div>
+                                <div class="project-detail-content">
+                                    Market data sourced from financial APIs (Yahoo Finance, Alpha Vantage, Finnhub) integrated via robust SQL data pipelines. News data aggregated from multiple financial news sources and processed through real-time data pipeline architecture. Complex SQL queries for data extraction, cleaning, transformation, and feature engineering across heterogeneous data sources. Vector-based semantic search for identifying similar historical market patterns and comparable news events. Comprehensive backtesting across multiple market conditions and volatility periods with rigorous statistical validation.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Performance Metrics</div>
+                                <div class="project-detail-content">
+                                    <strong>84% prediction accuracy</strong>—strong performance for hybrid technical-sentiment approach. Real-time processing capability for live news feeds and streaming market data. Robust backtesting results across bull markets, bear markets, and high-volatility periods. Scalable time-series forecasting architecture designed for production deployment.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Research Significance</div>
+                                <div class="project-detail-content">
+                                    Demonstrated that combining traditional time-series LSTM analysis with modern NLP fine-tuning and sentiment analysis significantly improves market prediction accuracy beyond single-method approaches. Published ahead of industry-wide adoption—now standard practice in algorithmic trading and fintech. Pioneering work in hybrid deep learning for financial applications with peer-reviewed validation.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Read Full Paper</div>
+                                <div class="project-detail-content">
+                                    <a href="https://drive.google.com/file/d/1JHKQgCZFrKiatZ0OU15MHC2cGzuZvI3Z/view" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">View Research Paper →</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="tech-stack">
-                        <span class="tech-badge">LSTM</span>
-                        <span class="tech-badge">PyTorch</span>
-                        <span class="tech-badge">TensorFlow</span>
-                        <span class="tech-badge">NLP Fine-tuning</span>
-                        <span class="tech-badge">SQL</span>
-                        <span class="tech-badge">Time-Series</span>
-                    </div>
-                    <a href="https://drive.google.com/file/d/1JHKQgCZFrKiatZ0OU15MHC2cGzuZvI3Z/view" class="project-link" target="_blank">Read Paper</a>
                 </div>
             </div>
         </div>
@@ -850,6 +1108,12 @@
     </footer>
 
     <script>
+        // Flip card function
+        function flipCard(element) {
+            const card = element.closest('.project-card');
+            card.classList.toggle('flipped');
+        }
+
         // Scroll reveal animation
         const revealElements = document.querySelectorAll('.scroll-reveal');
         
@@ -889,10 +1153,14 @@
         // Add interactivity to project cards
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px)';
+                if (!this.classList.contains('flipped')) {
+                    this.style.transform = 'translateY(-8px)';
+                }
             });
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+                if (!this.classList.contains('flipped')) {
+                    this.style.transform = 'translateY(0)';
+                }
             });
         });
     </script>

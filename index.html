@@ -911,8 +911,106 @@
                     </div>
                 </div>
 
-                <!-- Research -->
+                <!-- RegDesk -->
                 <div class="project-card scroll-reveal stagger-2">
+                    <div class="project-card-inner">
+                        <!-- FRONT OF CARD -->
+                        <div class="project-card-front">
+                            <span class="project-badge">Deployed RAG + Agent System</span>
+                            <h3 class="project-title">RegDesk</h3>
+                            <p class="project-description">
+                                A grounded RAG + agent system for regulated documents—credit policies, insurance contracts, clinical guidelines. Returns <strong>cited answers</strong> and <strong>refuses to guess</strong> when the corpus doesn't contain the answer.
+                            </p>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">&lt;3s</div>
+                                    <div class="metric-label">p95 Latency</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">512MB</div>
+                                    <div class="metric-label">Free-Tier Deploy</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">100%</div>
+                                    <div class="metric-label">Cited Answers</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">4</div>
+                                    <div class="metric-label">Eval Metrics</div>
+                                </div>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">FastAPI</span>
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">TypeScript</span>
+                                <span class="tech-badge">Claude API</span>
+                                <span class="tech-badge">BM25</span>
+                                <span class="tech-badge">MCP</span>
+                                <span class="tech-badge">Docker</span>
+                            </div>
+                            <button class="flip-button" onclick="flipCard(this)">Read More</button>
+                        </div>
+
+                        <!-- BACK OF CARD -->
+                        <div class="project-card-back">
+                            <button class="close-button" onclick="flipCard(this.closest('.project-card'))">← Back</button>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">The Challenge</div>
+                                <div class="project-detail-content">
+                                    In regulated domains, a confidently wrong answer is worse than no answer. Critical rules sit buried in long policy PDFs, and generic chatbots hallucinate—unacceptable in a compliance context. The hard problem isn't generation; it's trustworthy retrieval, grounding, and knowing when to abstain.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">The Solution</div>
+                                <div class="project-detail-content">
+                                    A deployable, evaluation-instrumented assistant combining hybrid retrieval, an agentic answer loop, mandatory citations, and a refusal guardrail. Every answer is constrained to a controlled, indexed corpus—the organization's source of record—and bound to the exact passage and match score it relied on.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Technical Architecture</div>
+                                <div class="project-detail-content">
+                                    Two-tier system: a React/TypeScript single-page UI and a Python/FastAPI backend owning retrieval, the agent loop, and evaluation. Retrieval is hybrid—dense TF-IDF (cosine) fused with BM25 lexical scoring via Reciprocal Rank Fusion—kept dependency-light (NumPy + rank-bm25) so it runs on a 512MB free tier, with a pluggable interface for API embeddings. The same retrieval is exposed as an MCP server for external agents.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Engineering Highlights</div>
+                                <div class="project-detail-content">
+                                    Calibrated refusal threshold that abstains below a retrieval-confidence cutoff. Verifiable citations surfacing the exact snippet and score. Runtime document upload (txt/md/pdf) into the live index. REST API with auto-generated Swagger docs. Structured per-request observability logs for latency and token cost.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Evaluation &amp; Trust</div>
+                                <div class="project-detail-content">
+                                    Evaluation is a first-class feature. A labeled question set—including deliberately unanswerable questions—drives a scorecard measuring recall@k (dense vs hybrid), citation accuracy, refusal correctness, and latency. The same logic powers the /evals endpoint and a CLI harness, and GitHub Actions runs it on every push.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Deployment &amp; Ops</div>
+                                <div class="project-detail-content">
+                                    Containerized with Docker; backend auto-deploys to Render and frontend to Vercel via CI/CD on push to main. Tests run fully offline against a labeled stub. Portable to AWS App Runner or any Docker host.
+                                </div>
+                            </div>
+
+                            <div class="project-detail-section">
+                                <div class="project-detail-title">Live Demo</div>
+                                <div class="project-detail-content">
+                                    <a href="https://mitali06-regdesk.vercel.app/" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">Visit RegDesk UI →</a><br>
+                                    <a href="https://regdesk-api.onrender.com/docs" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">API / Swagger docs →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research -->
+                <div class="project-card scroll-reveal stagger-3">
                     <div class="project-card-inner">
                         <!-- FRONT OF CARD -->
                         <div class="project-card-front">

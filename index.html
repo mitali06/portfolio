@@ -1097,17 +1097,20 @@
             <div class="cta-buttons">
                 <a href="https://www.linkedin.com/in/mitalikasurde/" class="btn btn-primary" target="_blank">💼 LinkedIn</a>
                 <a href="mailto:kasurdemitali@gmail.com" class="btn btn-secondary">✉️ Email</a>
-                <a href="https://github.com" class="btn btn-secondary" target="_blank">🔗 GitHub</a>
+                <a href="https://github.com/mitali06" class="btn btn-secondary" target="_blank">🔗 GitHub</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Mitali Kasurde. Building the future of AI, one system at a time.</p>
+        <p>&copy; <span id="copyright-year"></span> Mitali Kasurde. Building the future of AI, one system at a time.</p>
     </footer>
 
     <script>
+        // Auto-update copyright year
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
         // Flip card function
         function flipCard(element) {
             const card = element.closest('.project-card');

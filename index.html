@@ -80,6 +80,19 @@
     .proj-meta .eyebrow{display:block;margin-bottom:.9rem;}
     .proj-meta .year{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--muted);}
     .proj h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.7rem;margin-bottom:.7rem;letter-spacing:-.01em;}
+    .proj-title-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:.7rem;}
+    .proj-title-row h3{margin-bottom:0;}
+    .status-active{display:inline-flex;align-items:center;gap:.45rem;font-family:'JetBrains Mono',monospace;
+        font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
+        background:var(--brass-soft);border:1px solid rgba(201,164,92,.28);
+        padding:.32rem .6rem;border-radius:2px;line-height:1;white-space:nowrap;}
+    .status-active .dot{width:6px;height:6px;border-radius:50%;background:var(--brass);animation:pulse 2.2s ease-out infinite;}
+    @keyframes pulse{
+        0%{box-shadow:0 0 0 0 rgba(201,164,92,.5);}
+        70%{box-shadow:0 0 0 7px rgba(201,164,92,0);}
+        100%{box-shadow:0 0 0 0 rgba(201,164,92,0);}
+    }
+    @media (prefers-reduced-motion:reduce){.status-active .dot{animation:none;}}
     .proj p{color:var(--bone-dim);max-width:60ch;margin-bottom:1.6rem;}
     .proj p strong{color:var(--bone);font-weight:500;}
     .metrics{display:flex;gap:2.6rem;flex-wrap:wrap;margin-bottom:1.6rem;padding:1.1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
@@ -173,7 +186,10 @@
     <article class="proj">
         <div class="proj-meta"><span class="eyebrow">Deployed RAG + Agent</span><span class="year">Live · 2026</span></div>
         <div class="proj-body">
-            <h3>RegDesk</h3>
+            <div class="proj-title-row">
+                <h3>RegDesk</h3>
+                <span class="status-active"><span class="dot"></span>Actively improving</span>
+            </div>
             <p>A grounded RAG + agent system for high-stakes documents — policies, contracts, clinical guidelines — that returns <strong>cited answers</strong> and <strong>refuses to guess</strong> when the corpus doesn't contain the answer.</p>
             <div class="metrics">
                 <div class="metric"><div class="v">&lt;3s</div><div class="k">p95 Latency</div></div>

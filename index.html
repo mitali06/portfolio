@@ -137,12 +137,42 @@
     }
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
     :focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
+
+    /* Journey */
+    .journey-intro{color:var(--bone-dim);max-width:56ch;margin:-1.6rem 0 3rem;font-size:1rem;}
+    .timeline{position:relative;padding-left:2.4rem;}
+    .timeline::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:1px;
+        background:linear-gradient(to bottom, rgba(201,164,92,.35), rgba(201,164,92,.06));}
+    .stage{position:relative;margin-bottom:1.5rem;}
+    .stage:last-child{margin-bottom:0;}
+    .stage-dot{position:absolute;left:-2.4rem;top:1.35rem;width:19px;height:19px;border-radius:50%;
+        background:var(--ink);border:1px solid rgba(201,164,92,.35);display:flex;align-items:center;justify-content:center;}
+    .stage-dot::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--brass);opacity:.55;}
+    .stage.is-current .stage-dot{border-color:var(--brass);}
+    .stage.is-current .stage-dot::after{opacity:1;animation:pulse 2.2s ease-in-out infinite;}
+    details.stage-card{background:var(--surface);border:1px solid var(--line);border-radius:3px;overflow:hidden;transition:border-color .2s ease;}
+    details.stage-card[open]{border-color:rgba(201,164,92,.35);}
+    details.stage-card summary{list-style:none;cursor:pointer;padding:1.3rem 1.5rem;display:flex;align-items:baseline;justify-content:space-between;gap:1rem;}
+    details.stage-card summary::-webkit-details-marker{display:none;}
+    details.stage-card summary::before{content:none;}
+    .stage-heading{display:flex;flex-direction:column;gap:.4rem;}
+    .stage-phase{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:.6rem;}
+    .current-pill{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);
+        background:var(--brass-soft);border:1px solid rgba(201,164,92,.35);padding:.18rem .55rem;border-radius:2px;}
+    .stage-name{font-family:'Fraunces',serif;font-weight:500;font-size:1.2rem;}
+    .stage-caret{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:.85rem;transition:transform .2s ease;flex-shrink:0;margin-top:.2rem;}
+    details[open] .stage-caret{transform:rotate(45deg);}
+    .stage-body{padding:0 1.5rem 1.5rem;color:var(--bone-dim);font-size:.92rem;line-height:1.65;}
+    .stage-body p{margin:0 0 .9rem;}
+    .skill-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.1rem;}
+    .skill-tags .tag{font-size:.7rem;}
+    .stage-link{display:inline-block;margin-top:.9rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--brass);border-bottom:1px solid rgba(201,164,92,.35);padding-bottom:1px;}
 </style>
 </head>
 <body>
 <nav><div class="wrap">
     <div class="mark">Mitali Kasurde<span>.</span></div>
-    <ul><li><a href="#work">Work</a></li><li><a href="#skills">Skills</a></li><li><a href="#credentials">Credentials</a></li><li><a href="#contact">Contact</a></li></ul>
+    <ul><li><a href="#work">Work</a></li><li><a href="#skills">Skills</a></li><li><a href="#credentials">Credentials</a></li><li><a href="#journey">Journey</a></li><li><a href="#contact">Contact</a></li></ul>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -154,7 +184,6 @@
         <a class="btn ghost" href="mailto:kasurdemitali@gmail.com">Get in touch</a>
     </div>
 </div></header>
-
 <section id="work"><div class="wrap">
     <div class="sec-head"><span class="idx">01</span><h2>Selected Work</h2></div>
 
@@ -250,6 +279,111 @@
         <div class="cred-card"><div class="t">Finance</div><div class="n">Financial Markets</div><div class="s">Yale University</div></div>
         <div class="cred-card"><div class="t">Infrastructure</div><div class="n">Cloud Computing Fundamentals</div><div class="s">NPTEL</div></div>
         <div class="cred-card"><div class="t">Frontend</div><div class="n">Responsive Website Basics</div><div class="s">Coursera · 2020</div></div>
+    </div>
+</div></section>
+
+<section class="alt" id="journey"><div class="wrap">
+    <div class="sec-head"><span class="idx">04</span><h2>The Learning Journey</h2></div>
+    <p class="journey-intro">This is roughly how I got from writing my first programs to building retrieval and agent systems. It wasn't a straight line, but it was a fairly honest one.</p>
+
+    <div class="timeline">
+
+        <div class="stage">
+            <div class="stage-dot"></div>
+            <details class="stage-card">
+                <summary>
+                    <div class="stage-heading">
+                        <span class="stage-phase">Where it started</span>
+                        <span class="stage-name">Learning to think like an engineer</span>
+                    </div>
+                    <span class="stage-caret">+</span>
+                </summary>
+                <div class="stage-body">
+                    <p>I started where most people do: writing code that mostly worked, then slowly learning why it broke. Data structures, algorithms, Git, and enough systems thinking to understand what a for-loop can actually do to a server. This is also where I picked up the habit of reading documentation instead of skipping straight to tutorials.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span><span class="tag">Data Structures & Algorithms</span><span class="tag">Git / GitHub</span><span class="tag">SQL</span><span class="tag">OOP & Systems Design</span>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <div class="stage">
+            <div class="stage-dot"></div>
+            <details class="stage-card">
+                <summary>
+                    <div class="stage-heading">
+                        <span class="stage-phase">Finding the math underneath</span>
+                        <span class="stage-name">Understanding how machines actually learn</span>
+                    </div>
+                    <span class="stage-caret">+</span>
+                </summary>
+                <div class="stage-body">
+                    <p>Linear algebra, probability, and statistics stopped feeling abstract once I saw them as the reason a model converges or doesn't. From there I moved into classical ML: regression, trees, clustering, and learning to evaluate a model honestly before trusting it.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Linear Algebra</span><span class="tag">Probability & Statistics</span><span class="tag">scikit-learn</span><span class="tag">Feature Engineering</span><span class="tag">Model Evaluation</span>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <div class="stage">
+            <div class="stage-dot"></div>
+            <details class="stage-card">
+                <summary>
+                    <div class="stage-heading">
+                        <span class="stage-phase">Going deeper</span>
+                        <span class="stage-name">Building my first neural networks</span>
+                    </div>
+                    <span class="stage-caret">+</span>
+                </summary>
+                <div class="stage-body">
+                    <p>This is where I really started to understand backpropagation, activation functions, and the shift from hand-crafted features to representations a network learns on its own. I built and broke enough CNNs and RNNs to understand why architecture choices matter just as much as data.</p>
+                    <div class="skill-tags">
+                        <span class="tag">PyTorch</span><span class="tag">CNNs</span><span class="tag">RNNs / LSTMs</span><span class="tag">Backpropagation</span><span class="tag">Model Training at Scale</span>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <div class="stage">
+            <div class="stage-dot"></div>
+            <details class="stage-card">
+                <summary>
+                    <div class="stage-heading">
+                        <span class="stage-phase">The shift to language</span>
+                        <span class="stage-name">Learning how LLMs actually work</span>
+                    </div>
+                    <span class="stage-caret">+</span>
+                </summary>
+                <div class="stage-body">
+                    <p>I dug into attention mechanisms, tokenization, and how foundation models actually behave under the hood, then moved into the practical side: prompting, embeddings, and working with frontier model APIs instead of training from scratch.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Transformer Architecture</span><span class="tag">Hugging Face</span><span class="tag">Prompt Engineering</span><span class="tag">Embeddings</span><span class="tag">OpenAI / Anthropic APIs</span>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <div class="stage is-current">
+            <div class="stage-dot"></div>
+            <details class="stage-card" open>
+                <summary>
+                    <div class="stage-heading">
+                        <span class="stage-phase">Where I am now <span class="current-pill">Actively building</span></span>
+                        <span class="stage-name">Building systems that retrieve, reason, and act</span>
+                    </div>
+                    <span class="stage-caret">+</span>
+                </summary>
+                <div class="stage-body">
+                    <p>This is where everything before it comes together. I'm currently working through retrieval pipelines, vector search, agentic workflows, and evaluation methodology, mostly by implementing them in real systems rather than just reading papers and docs. It's the phase I'm in right now, and probably will be for a while. The projects below are where that learning gets tested against actual code.</p>
+                    <div class="skill-tags">
+                        <span class="tag">RAG Pipelines</span><span class="tag">Vector Databases</span><span class="tag">Agentic Workflows</span><span class="tag">LLM Evaluation</span><span class="tag">FastAPI Deployment</span>
+                    </div>
+                    <a class="stage-link" href="#work">→ See this in action: Projects</a>
+                </div>
+            </details>
+        </div>
+
     </div>
 </div></section>
 
